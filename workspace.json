@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "darts": "apps/darts",
+    "darts-e2e": "apps/darts-e2e"
+  }
 }

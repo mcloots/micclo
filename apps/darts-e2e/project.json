@@ -1,0 +1,28 @@
+{
+  "root": "apps/darts-e2e",
+  "sourceRoot": "apps/darts-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/darts-e2e/cypress.json",
+        "devServerTarget": "darts:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "darts:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/darts-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["darts"]
+}
