@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@micclo/ui-ng-shared": ["libs/ui-ng-shared/src/index.ts"],
+      "@micclo/util-interface": ["libs/util-interface/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

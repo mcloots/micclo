@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "darts": "apps/darts",
-    "darts-e2e": "apps/darts-e2e"
+    "darts-e2e": "apps/darts-e2e",
+    "ui-ng-shared": "libs/ui-ng-shared",
+    "util-interface": "libs/util-interface"
   }
 }

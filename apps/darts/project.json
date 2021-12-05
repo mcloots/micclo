@@ -15,8 +15,8 @@
         "tsConfig": "apps/darts/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/darts/src/favicon.ico", "apps/darts/src/assets"],
-        "styles": ["apps/darts/src/styles.scss"],
-        "scripts": []
+        "styles": ["apps/darts/src/styles.scss", "./node_modules/bootstrap/scss/bootstrap.scss"],
+        "scripts": ["./node_modules/@popperjs/core/dist/umd/popper.min.js","./node_modules/bootstrap/dist/js/bootstrap.min.js"]
       },
       "configurations": {
         "production": {

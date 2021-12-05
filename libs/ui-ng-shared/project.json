@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ui-ng-shared",
+  "sourceRoot": "libs/ui-ng-shared/src",
+  "prefix": "micclo",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ui-ng-shared"],
+      "options": {
+        "jestConfig": "libs/ui-ng-shared/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ui-ng-shared/src/**/*.ts",
+          "libs/ui-ng-shared/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
