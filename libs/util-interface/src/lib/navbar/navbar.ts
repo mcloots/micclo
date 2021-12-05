@@ -2,10 +2,14 @@ import { Breakpoint } from "../global/globals";
 
 export class Navbar {
     //Breakpoint: //navbar-expand-lg --> breakpoint to expand on
-    navbarThemePrefix: string = "navbar";
-    navbarExpandPrefix: string = "navbar-expand";
+    navbarThemePrefix = "navbar";
+    navbarExpandPrefix = "navbar-expand";
 
-    constructor(public title: string, public expandBp: Breakpoint, public isLightTheme: boolean, public backgroundColor?: string){}
+    constructor(public title: string, public expandBp: Breakpoint, public isLightTheme: boolean, public brandRouterLink: string, public items: NavItem[], public togglerIcon?: string, public backgroundColor?: string){
+        if(!this.togglerIcon) {
+            this.togglerIcon = "navbar-toggler-icon";
+        }
+    }
 
     get onExpandClass(): string {
         return `${this.navbarExpandPrefix}-${this.expandBp.bp}`;
@@ -22,9 +26,12 @@ export class Navbar {
     get classes() : string {
         return this.onExpandClass + " " + this.themeClass;
     }
+
+    
 }
 
 export interface NavItem {
+    name:string;
     url: string;
-    params: string;
+    params?: string;
 }
