@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@micclo/darts-ui/feature-game": [
+        "libs/darts-ui/feature-game/src/index.ts"
+      ],
       "@micclo/ui-ng-shared": ["libs/ui-ng-shared/src/index.ts"],
       "@micclo/util-interface": ["libs/util-interface/src/index.ts"]
     }

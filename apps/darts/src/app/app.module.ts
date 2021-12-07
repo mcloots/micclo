@@ -9,8 +9,26 @@ import { UiNgSharedModule } from '@micclo/ui-ng-shared';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
-    UiNgSharedModule
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          loadChildren: () =>
+            import('@micclo/darts-ui/feature-game').then(
+              (module) => module.DartsUiFeatureGameModule
+            ),
+        },
+        {
+          path: 'play',
+          loadChildren: () =>
+            import('@micclo/darts-ui/feature-game').then(
+              (module) => module.DartsUiFeatureGameModule
+            ),
+        },
+      ],
+      { initialNavigation: 'enabledBlocking' }
+    ),
+    UiNgSharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

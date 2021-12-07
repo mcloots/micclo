@@ -5,6 +5,6 @@
     "types": []
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["src/**/*.d.ts"],
+  "include": ["src/**/*.d.ts", "../../libs/darts-ui/feature-game/src/index.ts"],
   "exclude": ["**/*.test.ts", "**/*.spec.ts"]
 }

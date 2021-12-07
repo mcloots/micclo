@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/darts-ui/feature-game",
+  "sourceRoot": "libs/darts-ui/feature-game/src",
+  "prefix": "micclo",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/darts-ui/feature-game"],
+      "options": {
+        "jestConfig": "libs/darts-ui/feature-game/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/darts-ui/feature-game/src/**/*.ts",
+          "libs/darts-ui/feature-game/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
