@@ -1,5 +1,13 @@
 <h1 class="text-decoration-underline text-center">501 - Double Out</h1>
 <div id="scoreCard" *ngFor="let p of players">
     <h3 class="text-center fs-3">{{p.name}}</h3>
-    <p  class="text-center fs-1">{{p.score}}</p>
+    <p  class="text-center fs-1">{{p.score}}</p>   
 </div>
+<form (ngSubmit)="updateScore()" #scoreForm="ngForm">
+    <div class="form-group row">
+        <label for="points" class="col-10">{{throwingPlayer.name}}</label>
+        <input type="number" class="form-control col-10 my-3" id="points" name="points" [(ngModel)]="score.score"
+                required autofocus #points>
+        <button type="submit" class="btn btn-primary col-10" [disabled]="!scoreForm.form.valid || isSubmitted">Add score</button>
+      </div>
+</form>
