@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Navbar, NavItem } from '@micclo/util-interface';
+import { Navbar } from '@micclo/util-interface';
 
 @Component({
   selector: 'micclo-root',

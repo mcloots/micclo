@@ -9,5 +9,7 @@ import { Navbar } from '@micclo/util-interface';
 export class NavbarComponent {
   @Input() navbar! : Navbar;
 
+  navbarCollapsed = true; 
+
 
 }
