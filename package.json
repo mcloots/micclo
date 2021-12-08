@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start" : "node server.js",
+    "start": "node server.js",
     "build": "nx build",
     "test": "nx test",
-    "postinstall": "ngcc --properties es2015 browser module main"
+    "postinstall": "ngcc --properties es2015 browser module main",
+    "heroku-postbuild": "ng build — prod"
   },
   "private": true,
   "devDependencies": {
@@ -57,5 +58,8 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
-  "engines": { "node": "14.17.1", "npm": "7.6.3" }
+  "engines": {
+    "node": "14.17.1",
+    "npm": "7.6.3"
+  }
 }
