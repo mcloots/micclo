@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { UiNgSharedModule } from '@micclo/ui-ng-shared';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { UiNgSharedModule } from '@micclo/ui-ng-shared';
       { initialNavigation: 'enabledBlocking' }
     ),
     UiNgSharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { GameComponent } from './game/game.component';
 import { FormsModule } from '@angular/forms';
+import {  HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule.forChild([
       {path: '', pathMatch: 'full', component: GameComponent}
     ]),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   declarations: [
     GameComponent

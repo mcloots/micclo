@@ -3,11 +3,19 @@
     <h3 class="text-center fs-3">{{p.name}}</h3>
     <p  class="text-center fs-1">{{p.score}}</p>   
 </div>
-<form (ngSubmit)="updateScore()" #scoreForm="ngForm">
+
+<div class="row">
+    <div *ngFor="let ds of dartsSpecials" class="col-3 text-center"><button type="button" [ngClass]="getClass(ds)" class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="selectSpecial(ds)">{{ds}}</button></div>
+    <div *ngFor="let dn of dartsNumbers" class="col-3 text-center"><button type="button" class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="reduceScore(dn)">{{dn}}</button></div>
+</div>
+
+
+
+<!-- <form (ngSubmit)="updateScore()" #scoreForm="ngForm">
     <div class="form-group row">
         <label for="points" class="col-10">{{throwingPlayer.name}}</label>
         <input type="number" class="form-control col-10 my-3" id="points" name="points" [(ngModel)]="score.score"
                 required autofocus #points>
         <button type="submit" class="btn btn-primary col-10" [disabled]="!scoreForm.form.valid || isSubmitted">Add score</button>
       </div>
-</form>
+</form> -->
