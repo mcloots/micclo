@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Throw } from './throw';
 import { Observable } from 'rxjs';
+import { Throw } from '@micclo/util-interface'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

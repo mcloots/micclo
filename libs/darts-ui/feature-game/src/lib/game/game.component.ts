@@ -5,10 +5,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Player, Score } from '@micclo/util-interface';
+import { Player, Score, Throw } from '@micclo/util-interface';
 import { Subscription } from 'rxjs';
-import { DartsService } from '../darts-service';
-import { Throw } from '../throw';
+import { DartsService } from '@micclo/darts-ui/services';
 
 @Component({
   selector: 'micclo-game',
@@ -112,10 +111,12 @@ export class GameComponent implements OnInit, OnDestroy {
   selectSpecial(ds: string): void {
     switch (ds) {
       case 'D':
-        this.isDouble = true;
+        this.isDouble = !this.isDouble;
+        this.isTriple = false;
         break;
       case 'T':
-        this.isTriple = true;
+        this.isTriple = !this.isTriple;
+        this.isDouble = false;
         break;
       case '25':
         this.isGreenBull = true;

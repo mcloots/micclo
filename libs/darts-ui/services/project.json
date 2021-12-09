@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/darts-ui/services",
+  "sourceRoot": "libs/darts-ui/services/src",
+  "prefix": "micclo",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/darts-ui/services"],
+      "options": {
+        "jestConfig": "libs/darts-ui/services/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/darts-ui/services/src/**/*.ts",
+          "libs/darts-ui/services/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
