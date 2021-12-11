@@ -15,14 +15,9 @@ import { DartsService } from '@micclo/darts-ui/services';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit, OnDestroy {
-  throwArrow: Throw = {
-    player: '619bf83c95971fe8b714f6f6',
-    points: undefined,
-    isDouble: false,
-    isTriple: false,
-    isGreenBull: false,
-    isRedBull: false,
-  };
+  average = 0.00;
+  totalTurnPoints: number[] = [];
+  turnThrows: Throw[] = [];
   postThrow$: Subscription = new Subscription();
 
   players: Player[] = [
@@ -64,48 +59,19 @@ export class GameComponent implements OnInit, OnDestroy {
     if (special === 'D' && this.isDouble) {
       return 'bg-success';
     }
-
+    if (special === '25') {
+      return 'bg-success';
+    }
+    if (special === '50') {
+      return 'bg-danger';
+    }
     return '';
   }
 
-  reduceScore(dn: number): void {
-    let finalScore = dn;
-    if (this.isDouble) {
-      finalScore *= 2;
-    } else if (this.isTriple) {
-      finalScore *= 3;
-    }
+  addThrow(dn: number): void {
+    this.addThrowToTurn({player:'619bf83c95971fe8b714f6f6', points: dn, isDouble: this.isDouble, isTriple: this.isTriple, isGreenBull:  this.isGreenBull, isRedBull: this.isRedBull });
 
-    // Make api call
-    this.throwArrow.player = '619bf83c95971fe8b714f6f6';
-    this.throwArrow.points = dn;
-    this.throwArrow.isDouble = this.isDouble;
-    this.throwArrow.isTriple = this.isTriple;
-    this.throwArrow.isGreenBull = this.isGreenBull;
-    this.throwArrow.isRedBull = this.isRedBull;
-
-    this.postThrow$ = this.dartsService
-      .postThrow(this.throwArrow)
-      .subscribe((result) => {
-        //all went well
-        this.throwArrow = {
-          player: '619bf83c95971fe8b714f6f6',
-          points: undefined,
-          isDouble: false,
-          isTriple: false,
-          isGreenBull: false,
-          isRedBull: false,
-        };
-        this.isSubmitted = false;
-
-        if (this.throwingPlayer.score - finalScore > 0) {
-          this.throwingPlayer.score = this.throwingPlayer.score - finalScore;
-        } else {
-          this.throwingPlayer.score = 501;
-        }
-
-        this.resetSpecials();
-      });
+    this.resetSpecials();
   }
 
   selectSpecial(ds: string): void {
@@ -120,11 +86,11 @@ export class GameComponent implements OnInit, OnDestroy {
         break;
       case '25':
         this.isGreenBull = true;
-        this.reduceScore(25);
+        this.addThrow(25);
         break;
       case '50':
         this.isRedBull = true;
-        this.reduceScore(50);
+        this.addThrow(50);
         break;
       default:
         break;
@@ -136,6 +102,59 @@ export class GameComponent implements OnInit, OnDestroy {
     this.isTriple = false;
     this.isGreenBull = false;
     this.isRedBull = false;
+  }
+
+  endTurn(): void {
+    let totalScore = 0;
+    for (const thr of this.turnThrows) {
+      let finalScore = thr.points ?? 0;
+      if (thr.isDouble) {
+        finalScore *= 2;
+      } else if (thr.isTriple) {
+        finalScore *= 3;
+      }
+
+      totalScore += finalScore;
+
+      this.postThrow$ = this.dartsService.postThrow(thr).subscribe();
+    }
+
+    this.totalTurnPoints.push(totalScore);
+    this.average = this.totalTurnPoints.reduce((a,b) => a + b, 0) / this.totalTurnPoints.length;
+
+    if (this.throwingPlayer.score - totalScore > 0) {
+      this.throwingPlayer.score = this.throwingPlayer.score - totalScore;
+    } else {
+      this.throwingPlayer.score = 501;
+    }
+    this.turnThrows = [];
+  }
+
+  addThrowToTurn(thr: Throw): void {
+    if (this.turnThrows.length < 3) {
+      this.turnThrows.push(thr);
+    }
+  }
+
+  formatThrowToStringRepresentation(thr: Throw): string {
+    if (thr) {
+      if (thr.isGreenBull) {
+        return '25';
+      }
+      if (thr.isRedBull) {
+        return '50';
+      }
+      if (thr.isDouble) {
+        return 'D' + thr.points;
+      }
+      if (thr.isTriple) {
+        return 'T' + thr.points;
+      }
+      if (thr.points) {
+        return thr.points.toString();
+      }
+    }
+    return '';
   }
 
   updateScore(): void {

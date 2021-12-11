@@ -7,5 +7,23 @@ h1 {
 }
 
 .dartsThrowBtn {
-    width:100%;
+    width:70px;
+    height: 65px;
+}
+
+.turnBtn {
+    width:65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #ddc2ed;
+    color: white;
+}
+
+.submitScoreBtn {
+    width:65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #91e3c5;
+    color: white;
+    border: none;
 }

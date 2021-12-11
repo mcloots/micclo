@@ -1,12 +1,21 @@
 <h1 class="text-decoration-underline text-center">501 - Double Out</h1>
 <div id="scoreCard" *ngFor="let p of players">
     <h3 class="text-center fs-3">{{p.name}}</h3>
-    <p  class="text-center fs-1">{{p.score}}</p>   
+    <p class="text-end fs-6 fst-italic">avg {{average | number:'1.1'}}</p>
+    <p class="text-center fs-1">{{p.score}}</p>
 </div>
 
+<div class="row mb-3">
+    <div class="col-3 text-center"><button type="button" class="btn btn-lg turnBtn m-1">{{formatThrowToStringRepresentation(turnThrows[0])}}</button></div>
+    <div class="col-3 text-center"><button type="button" class="btn btn-lg turnBtn m-1">{{formatThrowToStringRepresentation(turnThrows[1])}}</button></div>
+    <div class="col-3 text-center"><button type="button" class="btn btn-lg turnBtn m-1">{{formatThrowToStringRepresentation(turnThrows[2])}}</button></div>
+    <div class="col-3 text-center"><button type="button" (click)="endTurn()" class="btn btn-lg btn-primary submitScoreBtn m-1"><i class="fas fa-check"></i></button></div>
+</div>
 <div class="row">
-    <div *ngFor="let ds of dartsSpecials" class="col-3 text-center"><button type="button" [ngClass]="getClass(ds)" class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="selectSpecial(ds)">{{ds}}</button></div>
-    <div *ngFor="let dn of dartsNumbers" class="col-3 text-center"><button type="button" class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="reduceScore(dn)">{{dn}}</button></div>
+    <div *ngFor="let ds of dartsSpecials" class="col-3 text-center"><button type="button" [ngClass]="getClass(ds)"
+            class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="selectSpecial(ds)">{{ds}}</button></div>
+    <div *ngFor="let dn of dartsNumbers" class="col-3 text-center"><button type="button"
+            class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="addThrow(dn)">{{dn}}</button></div>
 </div>
 
 
