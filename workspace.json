@@ -6,6 +6,7 @@
     "darts-ui-feature-game": "libs/darts-ui/feature-game",
     "darts-ui-services": "libs/darts-ui/services",
     "ui-ng-shared": "libs/ui-ng-shared",
+    "util-functions": "libs/util-functions",
     "util-interface": "libs/util-interface"
   }
 }

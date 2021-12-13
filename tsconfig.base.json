@@ -20,6 +20,8 @@
       ],
       "@micclo/darts-ui/services": ["libs/darts-ui/services/src/index.ts"],
       "@micclo/ui-ng-shared": ["libs/ui-ng-shared/src/index.ts"],
+      "@micclo/util-functions": ["libs/util-functions/src/index.ts"],
+      "@micclo/util-functions-darts": ["libs/util-functions/src/lib/darts/index.ts"],
       "@micclo/util-interface": ["libs/util-interface/src/index.ts"]
     }
   },

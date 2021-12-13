@@ -12,19 +12,8 @@
     <div class="col-3 text-center"><button type="button" (click)="endTurn()" class="btn btn-lg btn-primary submitScoreBtn m-1"><i class="fas fa-check"></i></button></div>
 </div>
 <div class="row">
-    <div *ngFor="let ds of dartsSpecials" class="col-3 text-center"><button type="button" [ngClass]="getClass(ds)"
-            class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="selectSpecial(ds)">{{ds}}</button></div>
+    <div *ngFor="let ds of dartsSpecials" class="col-3 text-center"><button type="button" [ngClass]="getClass(ds, isDouble, isTriple)"
+            class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="specialThrow(ds)">{{ds}}</button></div>
     <div *ngFor="let dn of dartsNumbers" class="col-3 text-center"><button type="button"
             class="btn btn-lg btn-primary dartsThrowBtn m-1" (click)="addThrow(dn)">{{dn}}</button></div>
 </div>
-
-
-
-<!-- <form (ngSubmit)="updateScore()" #scoreForm="ngForm">
-    <div class="form-group row">
-        <label for="points" class="col-10">{{throwingPlayer.name}}</label>
-        <input type="number" class="form-control col-10 my-3" id="points" name="points" [(ngModel)]="score.score"
-                required autofocus #points>
-        <button type="submit" class="btn btn-primary col-10" [disabled]="!scoreForm.form.valid || isSubmitted">Add score</button>
-      </div>
-</form> -->
