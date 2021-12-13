@@ -12,9 +12,9 @@ export class DartsService {
 
   postThrow(throwArrow: Throw): Observable<Throw> {
     //Simulate post of throw!
-    console.log(throwArrow);
-    return of<Throw>(throwArrow);
-    // return this.httpClient.post<Throw>("https://darts-node-api.herokuapp.com/api/throws", throwArrow);
+    //console.log(throwArrow);
+    //return of<Throw>(throwArrow);
+    return this.httpClient.post<Throw>("https://darts-node-api.herokuapp.com/api/throws", throwArrow);
   }
 
   getFinishCombination(currentScore: string): string[] {
