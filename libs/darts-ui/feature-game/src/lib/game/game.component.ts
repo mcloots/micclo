@@ -28,6 +28,7 @@ export class GameComponent implements OnInit, OnDestroy {
   totalTurnPoints: number[] = [];
   turnThrows: Throw[] = [];
   postThrow$: Subscription = new Subscription();
+  endCombinations: string[] = [];
 
   players: Player[] = [
     {
@@ -123,6 +124,10 @@ export class GameComponent implements OnInit, OnDestroy {
     } else {
       //Game continues!
       this.throwingPlayer.score = this.throwingPlayer.score - turnScore;
+
+      //Check if user can end with 3 throws
+      this.endCombinations = this.dartsService.getFinishCombination(this.throwingPlayer.score.toString());
+
     }
 
     this.turnThrows = [];

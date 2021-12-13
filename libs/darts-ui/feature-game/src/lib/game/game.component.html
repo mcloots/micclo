@@ -5,6 +5,10 @@
     <p class="text-center fs-1">{{p.score}}</p>
 </div>
 
+<div *ngIf="endCombinations && endCombinations.length > 0" class="row mb-3">
+    <div *ngFor="let ec of endCombinations" class="col-3 text-center"><button type="button" class="btn btn-md endBtn m-1">{{ec}}</button></div>
+</div>
+
 <div class="row mb-3">
     <div class="col-3 text-center"><button type="button" class="btn btn-lg turnBtn m-1">{{formatThrowToStringRepresentation(turnThrows[0])}}</button></div>
     <div class="col-3 text-center"><button type="button" class="btn btn-lg turnBtn m-1">{{formatThrowToStringRepresentation(turnThrows[1])}}</button></div>

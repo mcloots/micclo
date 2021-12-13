@@ -23,7 +23,10 @@
       "@micclo/util-functions": ["libs/util-functions/src/index.ts"],
       "@micclo/util-functions-darts": ["libs/util-functions/src/lib/darts/index.ts"],
       "@micclo/util-interface": ["libs/util-interface/src/index.ts"]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "allowSyntheticDefaultImports": true
 }
