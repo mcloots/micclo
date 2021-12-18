@@ -17,6 +17,7 @@ import {
   getAverageTurnScore,
   endGame,
 } from '@micclo/util-functions-darts';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'micclo-game',
@@ -30,16 +31,9 @@ export class GameComponent implements OnInit, OnDestroy {
   postThrow$: Subscription = new Subscription();
   endCombinations: string[] = [];
 
-  players: Player[] = [
-    {
-      id: '1',
-      name: 'Michaël',
-      score: 501,
-    } /*, {id: "2", name:"Evy", score: 501}*/,
-  ];
   score: Score = { id: '0', playerId: '1', score: undefined };
   isSubmitted = false;
-  throwingPlayer: Player = { id: '0', name: '', score: 0 };
+  throwingPlayer: Player = { id: '0', name: '', score: 501 };
   @ViewChild('points', { static: true }) pointsField: ElementRef | undefined;
 
   dartsSpecials: string[] = ['T', 'D', '50', '25'];
@@ -57,10 +51,27 @@ export class GameComponent implements OnInit, OnDestroy {
   //Gets string representation of throw, so we can show it in the purple circle
   formatThrowToStringRepresentation = formatThrowToStringRepresentation;
 
-  constructor(private dartsService: DartsService) {}
+  constructor(private dartsService: DartsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.throwingPlayer = this.players[0];
+    this.route.params.subscribe(params => {
+      const code = params['playercode'];
+
+      switch (code) {
+        case '1989':
+          //Michaël
+          this.throwingPlayer.name = "Michaël";
+          this.throwingPlayer.id = "619bf83c95971fe8b714f6f6"
+          break;
+          case '1980':
+            //Kristof
+            this.throwingPlayer.name = "Kristof";
+            this.throwingPlayer.id = "61bd991abc18ccd9d17455a5"
+            break;
+        default:
+          break;
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -69,7 +80,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   addThrow(dn: number): void {
     this.addThrowToTurn({
-      player: '619bf83c95971fe8b714f6f6',
+      player: this.throwingPlayer.id,
       points: dn,
       isDouble: this.isDouble,
       isTriple: this.isTriple,
@@ -121,6 +132,8 @@ export class GameComponent implements OnInit, OnDestroy {
       //Game is ended!
       this.throwingPlayer.score = 501;
       this.average = 0;
+      this.endCombinations = [];
+      this.totalTurnPoints = [];
     } else {
       //Game continues!
       this.throwingPlayer.score = this.throwingPlayer.score - turnScore;
