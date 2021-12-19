@@ -51,23 +51,31 @@ export class GameComponent implements OnInit, OnDestroy {
   //Gets string representation of throw, so we can show it in the purple circle
   formatThrowToStringRepresentation = formatThrowToStringRepresentation;
 
-  constructor(private dartsService: DartsService, private route: ActivatedRoute) {}
+  constructor(
+    private dartsService: DartsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const code = params['playercode'];
 
       switch (code) {
         case '1989':
           //Michaël
-          this.throwingPlayer.name = "Michaël";
-          this.throwingPlayer.id = "619bf83c95971fe8b714f6f6"
+          this.throwingPlayer.name = 'Michaël';
+          this.throwingPlayer.id = '619bf83c95971fe8b714f6f6';
           break;
-          case '1980':
-            //Kristof
-            this.throwingPlayer.name = "Kristof";
-            this.throwingPlayer.id = "61bd991abc18ccd9d17455a5"
-            break;
+        case '1980':
+          //Kristof
+          this.throwingPlayer.name = 'Kristof';
+          this.throwingPlayer.id = '61bd991abc18ccd9d17455a5';
+          break;
+        case '1354':
+          //Wout
+          this.throwingPlayer.name = 'Wout';
+          this.throwingPlayer.id = '61bf50740187b049b41dbe27';
+          break;
         default:
           break;
       }
@@ -139,8 +147,9 @@ export class GameComponent implements OnInit, OnDestroy {
       this.throwingPlayer.score = this.throwingPlayer.score - turnScore;
 
       //Check if user can end with 3 throws
-      this.endCombinations = this.dartsService.getFinishCombination(this.throwingPlayer.score.toString());
-
+      this.endCombinations = this.dartsService.getFinishCombination(
+        this.throwingPlayer.score.toString()
+      );
     }
 
     this.turnThrows = [];
