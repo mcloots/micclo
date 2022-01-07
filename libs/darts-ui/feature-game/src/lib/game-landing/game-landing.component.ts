@@ -24,4 +24,20 @@ export class GameLandingComponent {
         break;
     }
   }
+
+  statistics(player: string) {
+    switch (player) {
+      case 'M':
+        this.router.navigate(['/statistics/' + 1989]);
+        break;
+      case 'K':
+        this.router.navigate(['/statistics/' + 1980]);
+        break;
+      case 'W':
+        this.router.navigate(['/statistics/' + 1354]);
+        break;
+      default:
+        break;
+    }
+  }
 }

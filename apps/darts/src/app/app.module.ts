@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { UiNgSharedModule } from '@micclo/ui-ng-shared';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,10 @@ import { HttpClientModule } from '@angular/common/http';
       { initialNavigation: 'enabledBlocking' }
     ),
     UiNgSharedModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Throw } from '@micclo/util-interface';
+import { Player, Throw } from '@micclo/util-interface';
 import { HttpClient } from '@angular/common/http';
 import checkouts from './endcombinations.json';
 
@@ -28,5 +28,9 @@ export class DartsService {
       return checkoutScores;
     }
     return [];
+  }
+
+  getThrowsForPlayer(name: string, code: string): Observable<Player[]> {
+    return this.httpClient.get<Player[]>("https://darts-node-api.herokuapp.com/api/players/" + name + "/" + code + "/throws");
   }
 }

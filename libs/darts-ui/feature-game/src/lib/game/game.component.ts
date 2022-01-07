@@ -33,7 +33,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   score: Score = { id: '0', playerId: '1', score: undefined };
   isSubmitted = false;
-  throwingPlayer: Player = { id: '0', name: '', score: 501 };
+  throwingPlayer: Player = { id: '0', name: '', score: 501, throws: [] };
   @ViewChild('points', { static: true }) pointsField: ElementRef | undefined;
 
   dartsSpecials: string[] = ['T', 'D', '50', '25'];
