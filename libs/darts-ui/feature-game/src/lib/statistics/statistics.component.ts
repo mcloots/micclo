@@ -18,6 +18,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
  name = '';
  getPlayerThrows$: Subscription = new Subscription();
  options: any;
+ totalThrows = 0;
 
   constructor(
     private dartsService: DartsService,
@@ -62,6 +63,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     }
 
     this.dartsService.getThrowsForPlayer(this.name,this.code).subscribe(result => {
+      this.totalThrows = result[0].throws.length;
       this.options = {
         legend: {
           data: ['Single','Double','Triple'],

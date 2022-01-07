@@ -1,4 +1,4 @@
 <h2>{{name}}</h2>
 
-<h3>Scores (throw)</h3>
+<h3 class="text-center"><span *ngIf="totalThrows > 0">{{totalThrows}} throws</span></h3>
 <div echarts [options]="options" class="singles-chart"></div>
