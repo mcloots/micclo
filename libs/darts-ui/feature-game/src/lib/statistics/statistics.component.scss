@@ -1,37 +1,16 @@
-h1 {
-    margin-bottom: 40px;
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 75%;
 }
 
-#scoreCard {
-    margin: 25px;
+table,th, td {
+    border: 1px solid grey;
+}
+th,td {
+    padding: 0.5rem;
 }
 
-.dartsThrowBtn {
-    width: 60px;
-    height: 55px;
-}
-
-.turnBtn {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background-color: #ddc2ed;
-    color: white;
-}
-
-.endBtn {
-    width:65px;
-    height: 65px;
-    border-radius: 50%;
-    background-color: #67da67;
-    color: white;
-}
-
-.submitScoreBtn {
-    width:65px;
-    height: 65px;
-    border-radius: 50%;
-    background-color: #91e3c5;
-    color: white;
-    border: none;
-}
+col:nth-child(odd),th {
+    background-color:lightgray;
+  }
