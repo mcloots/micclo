@@ -17,9 +17,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
  code  = '';
  name = '';
  getPlayerThrows$: Subscription = new Subscription();
- optionsSingle: any;
- optionsDouble: any;
- optionsTriple: any;
+ options: any;
 
   constructor(
     private dartsService: DartsService,
@@ -64,9 +62,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     }
 
     this.dartsService.getThrowsForPlayer(this.name,this.code).subscribe(result => {
-      this.optionsSingle = {
+      this.options = {
         legend: {
-          data: ['Score'],
+          data: ['Single','Double','Triple'],
           align: 'left',
         },
         tooltip: {},
@@ -80,67 +78,24 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         yAxis: {},
         series: [
           {
-            name: 'Score',
+            name: 'Single',
             type: 'bar',
-            data: data1,
-            animationDelay: (idx: any) => idx * 10,
+            data: data1
           },
-        ],
-        animationEasing: 'elasticOut',
-        animationDelayUpdate: (idx: any) => idx * 5,
+          {
+            name: 'Double',
+            type: 'bar',
+            data: data2
+          },
+          {
+            name: 'Triple',
+            type: 'bar',
+            data: data3
+          }
+        ]
       };
 
-      this.optionsDouble = {
-        legend: {
-          data: ['Score'],
-          align: 'left',
-        },
-        tooltip: {},
-        xAxis: {
-          data: xAxisDataDoubleSingle,
-          silent: false,
-          splitLine: {
-            show: false,
-          },
-        },
-        yAxis: {},
-        series: [
-          {
-            name: 'Score',
-            type: 'bar',
-            data: data2,
-            animationDelay: (idx: any) => idx * 10,
-          },
-        ],
-        animationEasing: 'elasticOut',
-        animationDelayUpdate: (idx: any) => idx * 5,
-      };
-
-      this.optionsTriple = {
-        legend: {
-          data: ['Score'],
-          align: 'left',
-        },
-        tooltip: {},
-        xAxis: {
-          data: xAxisDataDoubleSingle,
-          silent: false,
-          splitLine: {
-            show: false,
-          },
-        },
-        yAxis: {},
-        series: [
-          {
-            name: 'Score',
-            type: 'bar',
-            data: data3,
-            animationDelay: (idx: any) => idx * 10,
-          },
-        ],
-        animationEasing: 'elasticOut',
-        animationDelayUpdate: (idx: any) => idx * 5,
-      };
+    
 
       const l25 = result[0].throws.filter(t => t.isRedBull).length;
         data1.push(l25);
@@ -151,6 +106,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         data1.push(l);
       }
 
+      data2.push(0);
+      data2.push(0);
+      data3.push(0);
+      data3.push(0);
       for (let i = 20; i > 0; i--) {
         const l = result[0].throws.filter(t => t.isDouble && t.points == i).length;
         data2.push(l);
