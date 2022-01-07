@@ -17,39 +17,10 @@
     <tr>
         <th>Score</th>
         <th>Percentage</th>
-        <th>Score</th>
-        <th>Percentage</th>
-        <th>Score</th>
-        <th>Percentage</th>
-        <th>Score</th>
-        <th>Percentage</th>
     </tr>
-    <tr>
-        <td>20</td>
-        <td>{{percentageSingle20}}%</td>
-        <td>D20</td>
-        <td>{{percentageDouble20}}%</td>
-        <td>T20</td>
-        <td>{{percentageTriple20}}%</td>
-        <td>25</td>
-        <td>{{percentage25}}%</td>
+    <tr *ngFor="let p of percentages">
+        <td>{{p[0]}}</td>
+        <td>{{p[1]}}%</td>
     </tr>
-    <tr>
-        <td>1</td>
-        <td>{{percentageSingle1}}%</td>
-        <td>D1</td>
-        <td>{{percentageDouble1}}%</td>
-        <td>T1</td>
-        <td>{{percentageTriple1}}%</td>
-        <td>50</td>
-        <td>{{percentage50}}%</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>{{percentageSingle5}}%</td>
-        <td>D5</td>
-        <td>{{percentageDouble5}}%</td>
-        <td>T5</td>
-        <td>{{percentageTriple5}}%</td>
-    </tr>
+
 </table>
