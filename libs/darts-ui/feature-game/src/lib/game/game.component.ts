@@ -76,6 +76,11 @@ export class GameComponent implements OnInit, OnDestroy {
           this.throwingPlayer.name = 'Wout';
           this.throwingPlayer.id = '61bf50740187b049b41dbe27';
           break;
+        case '3472':
+          //Peter
+          this.throwingPlayer.name = 'Peter';
+          this.throwingPlayer.id = '61f7b2d7553620591ac27cf4';
+          break;
         default:
           break;
       }

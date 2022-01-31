@@ -20,6 +20,9 @@ export class GameLandingComponent {
       case 'W':
         this.router.navigate(['/game/' + 1354]);
         break;
+      case 'P':
+        this.router.navigate(['/game/' + 3472]);
+        break;
       default:
         break;
     }
@@ -35,6 +38,9 @@ export class GameLandingComponent {
         break;
       case 'W':
         this.router.navigate(['/statistics/' + 1354]);
+        break;
+      case 'P':
+        this.router.navigate(['/statistics/' + 3472]);
         break;
       default:
         break;

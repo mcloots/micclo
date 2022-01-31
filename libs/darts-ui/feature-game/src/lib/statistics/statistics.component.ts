@@ -39,6 +39,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           //Wout
           this.name = 'Wout';
           break;
+        case '3472':
+          //Peter
+          this.name = 'Peter';
+          break;
         default:
           break;
       }
@@ -95,17 +99,26 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         };
 
         const l25 = result[0].throws.filter((t) => t.isRedBull).length;
-        this.percentages.push(['25', ((l25 / this.totalThrows) * 100).toFixed(2)]);
+        this.percentages.push([
+          '25',
+          ((l25 / this.totalThrows) * 100).toFixed(2),
+        ]);
         data1.push(l25);
         const l50 = result[0].throws.filter((t) => t.isGreenBull).length;
-        this.percentages.push(['50', ((l50 / this.totalThrows) * 100).toFixed(2)]);
+        this.percentages.push([
+          '50',
+          ((l50 / this.totalThrows) * 100).toFixed(2),
+        ]);
         data1.push(l50);
         for (let i = 20; i > 0; i--) {
           const l = result[0].throws.filter(
             (t) => !t.isDouble && !t.isTriple && t.points == i
           ).length;
 
-          this.percentages.push([i.toString(), ((l / this.totalThrows) * 100).toFixed(2)]);
+          this.percentages.push([
+            i.toString(),
+            ((l / this.totalThrows) * 100).toFixed(2),
+          ]);
           data1.push(l);
         }
 
@@ -118,7 +131,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             (t) => t.isDouble && t.points == i
           ).length;
 
-          this.percentages.push(["D" + i.toString(), ((l / this.totalThrows) * 100).toFixed(2)]);
+          this.percentages.push([
+            'D' + i.toString(),
+            ((l / this.totalThrows) * 100).toFixed(2),
+          ]);
           data2.push(l);
         }
 
@@ -127,17 +143,20 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             (t) => t.isTriple && t.points == i
           ).length;
 
-          this.percentages.push(["T" + i.toString(), ((l / this.totalThrows) * 100).toFixed(2)]);
+          this.percentages.push([
+            'T' + i.toString(),
+            ((l / this.totalThrows) * 100).toFixed(2),
+          ]);
 
           data3.push(l);
         }
 
         //sort percentages
-        this.percentages.sort(function(a,b) {
-          return b[1].localeCompare(a[1], undefined, {numeric: true});
+        this.percentages.sort(function (a, b) {
+          return b[1].localeCompare(a[1], undefined, { numeric: true });
         });
 
-        this.percentages = this.percentages.slice(0,10);
+        this.percentages = this.percentages.slice(0, 10);
       });
   }
 
