@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { DartsService } from '@micclo/darts-ui/services';
 
 import { ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -104,12 +104,14 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       .subscribe((result) => {
         if(isFiltered) {
           if(this.range.value.start) {
+            this.range.value.start = moment(this.range.value.start).add(1, 'hours');
             const start = this.range.value.start.toISOString();
             result[0].throws = result[0].throws.filter(function (value) {
               return value.createdAt >= start;
             });
           }
           if(this.range.value.end) {
+            this.range.value.end = moment(this.range.value.end).add(25, 'hours');
             const end = this.range.value.end.toISOString();
             result[0].throws = result[0].throws.filter(function (value) {
               return value.createdAt <= end;
