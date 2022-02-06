@@ -5,4 +5,5 @@ export interface Throw {
     isGreenBull: boolean;
     isRedBull: boolean;
     player: string;
+    createdAt: Date;
 }

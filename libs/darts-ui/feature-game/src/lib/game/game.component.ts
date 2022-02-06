@@ -99,6 +99,7 @@ export class GameComponent implements OnInit, OnDestroy {
       isTriple: this.isTriple,
       isGreenBull: this.isGreenBull,
       isRedBull: this.isRedBull,
+      createdAt: new Date()
     });
 
     this.resetSpecials();

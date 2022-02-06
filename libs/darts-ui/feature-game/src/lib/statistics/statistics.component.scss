@@ -1,16 +1,21 @@
 table {
-    border-collapse: collapse;
-    margin: auto;
-    width: 75%;
+  border-collapse: collapse;
+  margin: auto;
+  width: 75%;
 }
 
-table,th, td {
-    border: 1px solid grey;
+table,
+th,
+td {
+  border: 1px solid grey;
 }
-th,td {
-    padding: 0.5rem;
+th,
+td {
+  padding: 0.5rem;
 }
 
-col:nth-child(odd),th {
-    background-color:lightgray;
-  }
+col:nth-child(odd),
+th {
+  background-color: lightgray;
+}
+

@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { DartsService } from '@micclo/darts-ui/services';
 
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'micclo-statistics',
@@ -16,11 +18,35 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   options: any;
   totalThrows = 0;
   percentages: string[][] = [];
+  // Date Filter
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl(),
+  });
 
   constructor(
     private dartsService: DartsService,
     private route: ActivatedRoute
   ) {}
+
+  filterGraph() {
+    const xAxisData: number[] = [];
+    const xAxisDataDoubleSingle: number[] = [];
+    const data1: number[] = [];
+    const data2: number[] = [];
+    const data3: number[] = [];
+
+    if (this.range.value.start) {
+      this.getData(xAxisData, data1, data2, data3, true);
+
+      xAxisData.push(50);
+      xAxisData.push(25);
+      for (let i = 20; i > 0; i--) {
+        xAxisData.push(i);
+        xAxisDataDoubleSingle.push(i);
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -54,16 +80,42 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     const data2: number[] = [];
     const data3: number[] = [];
 
+    this.getData(xAxisData, data1, data2, data3, false);
+
     xAxisData.push(50);
     xAxisData.push(25);
     for (let i = 20; i > 0; i--) {
       xAxisData.push(i);
       xAxisDataDoubleSingle.push(i);
     }
+  }
+
+  getData(
+    xAxisData: number[],
+    data1: number[],
+    data2: number[],
+    data3: number[],
+    isFiltered: boolean
+  ): void {
+    this.percentages = [];
 
     this.dartsService
       .getThrowsForPlayer(this.name, this.code)
       .subscribe((result) => {
+        if(isFiltered) {
+          if(this.range.value.start) {
+            const start = this.range.value.start.toISOString();
+            result[0].throws = result[0].throws.filter(function (value) {
+              return value.createdAt >= start;
+            });
+          }
+          if(this.range.value.end) {
+            const end = this.range.value.end.toISOString();
+            result[0].throws = result[0].throws.filter(function (value) {
+              return value.createdAt <= end;
+            });
+          }
+        }
         this.totalThrows = result[0].throws.length;
         this.options = {
           legend: {
@@ -159,7 +211,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         this.percentages = this.percentages.slice(0, 10);
       });
   }
-
   ngOnDestroy(): void {
     this.getPlayerThrows$.unsubscribe();
   }

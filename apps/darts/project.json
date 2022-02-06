@@ -15,7 +15,7 @@
         "tsConfig": "apps/darts/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/darts/src/favicon.ico", "apps/darts/src/assets"],
-        "styles": ["apps/darts/src/styles.scss"],
+        "styles": ["apps/darts/src/styles.scss", "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"],
         "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
       },
       "configurations": {
